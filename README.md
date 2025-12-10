@@ -1,1 +1,179 @@
-aa
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Artez - Arte, Juguetería y Ajedrez</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: #faf6f2;
+      color: #333;
+    }
+    header {
+      background: linear-gradient(135deg, #ff9a8b, #ff6a88, #ff99ac);
+      color: white;
+      padding: 2rem;
+      text-align: center;
+      font-size: 2rem;
+      font-weight: bold;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      background: #fff;
+      padding: 1rem;
+      border-bottom: 2px solid #eee;
+      flex-wrap: wrap;
+    }
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
+
+    .section {
+      padding: 3rem 10%;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .galeria img {
+      width: 100%;
+      border-radius: 12px;
+      object-fit: cover;
+    }
+
+    footer {
+      margin-top: 3rem;
+      text-align: center;
+      padding: 1rem;
+      background: #333;
+      color: white;
+    }
+
+    /* Carrito */
+    #carrito-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #ff6a88;
+      color: white;
+      padding: 15px 20px;
+      border-radius: 50px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+    #carrito-panel {
+      position: fixed;
+      right: 0;
+      top: 0;
+      width: 300px;
+      height: 100%;
+      background: white;
+      box-shadow: -3px 0 10px rgba(0,0,0,0.2);
+      padding: 1rem;
+      transform: translateX(100%);
+      transition: .3s;
+    }
+    #carrito-panel.abierto {
+      transform: translateX(0);
+    }
+  </style>
+</head>
+<body>
+  <header>Artez</header>
+
+  <nav>
+    <a href="#servicios">Servicios</a>
+    <a href="#compra">Compra</a>
+    <a href="#galeria">Galería</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+
+  <section id="servicios" class="section">
+    <h2>Servicios</h2>
+    <div class="grid">
+      <div class="card"><h3>Clases de Arte</h3><p>Pintura, dibujo y técnicas mixtas para todas las edades.</p></div>
+      <div class="card"><h3>Clases de Ajedrez</h3><p>Entrenamiento para principiantes e intermedios. Estrategia y práctica guiada.</p></div>
+      <div class="card"><h3>Talleres Creativos</h3><p>Actividades para grupos, niños y adultos.</p></div>
+    </div>
+  </section>
+
+  <section id="compra" class="section">
+    <h2>Compra de artículos</h2>
+    <div class="grid">
+      <div class="card" onclick="agregar('Material de librería')"><h3>Materiales de Librería</h3><p>Hojas, cuadernos, lápices, materiales escolares y más.</p></div>
+      <div class="card" onclick="agregar('Juguetería')"><h3>Artículos de Juguetería</h3><p>Juegos didácticos, rompecabezas, juguetes creativos.</p></div>
+      <div class="card" onclick="agregar('Envío / Retiro')"><h3>Opciones de Envío</h3><p>Envíos a domicilio y puntos de encuentro disponibles.</p></div>
+    </div>
+  </section>
+
+  <section id="galeria" class="section">
+    <h2>Galería</h2>
+    <div class="grid galeria">
+      <img src="https://picsum.photos/400/300?random=1" alt="Obra">
+      <img src="https://picsum.photos/400/300?random=2" alt="Obra">
+      <img src="https://picsum.photos/400/300?random=3" alt="Obra">
+    </div>
+  </section>
+
+  <section id="contacto" class="section">
+    <h2>Contacto</h2>
+    <p>Consultas y pedidos: <strong>artez-contacto@mail.com</strong></p>
+    <p>WhatsApp: <strong>+54 9 0000 0000</strong></p>
+  </section>
+
+  <div id="carrito-btn" onclick="toggleCarrito()">Carrito</div>
+  <div id="carrito-panel">
+    <h2>Carrito</h2>
+    <ul id="lista-carrito"></ul>
+  </div>
+
+  <footer>
+    © 2025 Artez – Arte, Juguetería y Ajedrez
+  </footer>
+
+  <script>
+    let carrito = [];
+
+    function agregar(item) {
+      carrito.push(item);
+      renderCarrito();
+    }
+
+    function renderCarrito() {
+      const lista = document.getElementById('lista-carrito');
+      lista.innerHTML = '';
+      carrito.forEach(i => {
+        const li = document.createElement('li');
+        li.textContent = i;
+        lista.appendChild(li);
+      });
+    }
+
+    function toggleCarrito() {
+      document.getElementById('carrito-panel').classList.toggle('abierto');
+    }
+  </script>
+</body>
+</html>
+
